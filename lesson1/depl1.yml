@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: data-consumer
+spec:
+  replicas: 1 
+  selector:
+    matchLabels:
+      app: data-consumer
+  template:
+    metadata:
+      labels:
+        app: data-consumer
+    spec:
+      containers:
+      - name: data-consumer
+        image: larutyunov/data-consumer:7
+        ports:
+        - containerPort: 8080
+        env:
+        - name: DATASOURCE.URL
+          value: "jdbc:postgresql://postgresql-1709073722:5432/simple"
+        - name: DATASOURCE.PASSWORD
+          value: "SN56mY2KMT"
+        - name: IAM
+          value: "main"

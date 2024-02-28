@@ -1,0 +1,17 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: data-consumer-canary
+spec:
+  hosts:
+    - "data-consumer.default.svc.cluster.local"
+  http:
+    - match:
+      - {}
+      route:
+        - weight: 90
+          destination:
+            host: data-consumer
+        - weight: 10
+          destination:
+            host: data-consumer-canary
