@@ -1,0 +1,13 @@
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: data-consumer
+spec:
+  host: data-consumer
+  subsets:
+  - name: main
+    labels:
+      environment: main
+  - name: rose
+    labels:
+      environment: rose
